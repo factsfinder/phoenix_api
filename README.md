@@ -1,6 +1,10 @@
-# api - API only Phoenix boilerplate.
+# Phoenix_API - API only Phoenix boilerplate.
 
-To start your Phoenix server:
+## What's in it ?
+- Full Graphql support using [`absinthe`](https://absinthe-graphql.org/)
+- Authentication using [`Guardian`](https://github.com/ueberauth/guardian)  
+
+### To start your Phoenix server:
 
 - Install dependencies with `mix deps.get`
 - Please check config/dev.exs to make sure the database config is correct.
@@ -10,9 +14,10 @@ To start your Phoenix server:
 * Access graphql playround at [`localhost:4000/graphiql`](http://localhost:4000/graphiql) from your browser to see the graphql playground in action
 * Access Phoenix live dashboard at [`localhost:4000/dashboard`](http://localhost:4000/dashboard)
 
+
 * To run in production? Please [check the official deployment guides](https://hexdocs.pm/phoenix/deployment.html).
 
-## Learn more
+### Learn more
 
 - Official website: https://www.phoenixframework.org/
 - Guides: https://hexdocs.pm/phoenix/overview.html
