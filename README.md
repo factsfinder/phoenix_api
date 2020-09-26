@@ -6,6 +6,11 @@
 - Authentication using [`Guardian`](https://github.com/ueberauth/guardian)  
 - S3 uploads and fetching and thumbailing images using arc,arc_ecto, ex_aws and ex_aws_s3.  
 
+### Todo
+- At present there are 3 models/schemas in this bolerplates. Users, Posts, and Chats. Graphql resolvers needs some refinements. Basically I need setup assocations a bit better so that I can just preload easily.
+- Possibly integrate dataloader queries too. 
+- Improve the way thumbnailing is done. Maybe check ImageProxy library for that ?  
+
 ### To start your Phoenix server:
 
 - Install dependencies with `mix deps.get`
