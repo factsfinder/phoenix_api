@@ -8,7 +8,7 @@
 
 ### Todo
 - Add tests
-- At present there are 3 models/schemas in this bolerplates. Users, Posts, and Chats. Graphql resolvers needs some refinements. Basically I need setup assocations a bit better so that I can just preload easily.
+- At present there are 3 models/schemas in this bolerplate. Users, Posts, and Chats. Graphql resolvers needs some refinements. Basically I need to setup assocations a bit better so that I can just preload these easily.
 - Possibly integrate dataloader queries too. 
 - Improve the way thumbnailing is done. Maybe check ImageProxy library for that ?  
 
