@@ -1,4 +1,4 @@
-# Phoenix_API - API only Phoenix boilerplate.
+# Phoenix Framework - API only Phoenix boilerplate.
 
 ## What's in it ?
 - Full Graphql support using [`absinthe`](https://absinthe-graphql.org/)
