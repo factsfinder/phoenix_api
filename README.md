@@ -1,8 +1,10 @@
 # Phoenix Framework - API only Phoenix boilerplate.
 
 ## What's in it ?
+
 - Full Graphql support using [`absinthe`](https://absinthe-graphql.org/)
 - Authentication using [`Guardian`](https://github.com/ueberauth/guardian)  
+- S3 uploads and fetching and thumbailing images using arc,arc_ecto, ex_aws and ex_aws_s3.  
 
 ### To start your Phoenix server:
 
