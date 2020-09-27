@@ -2,8 +2,6 @@ defmodule API.Graphql.Schema.Context do
   @behaviour Plug
   import Plug.Conn
 
-  require Logger
-
   alias API.{Repo, User, Guardian, Graphql}
 
   def init(opts), do: opts

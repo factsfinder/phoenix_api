@@ -24,7 +24,6 @@ defmodule API do
   def channel do
     quote do
       use Phoenix.Channel
-      import API.Gettext
     end
   end
 

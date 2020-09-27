@@ -42,7 +42,7 @@ defmodule API.MixProject do
       {:telemetry_poller, "~> 0.4"},
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
-      {:guardian, "~> 2.0"},
+      {:guardian, "~> 2.1.1"},
       {:argon2_elixir, "~> 2.0"},
       {:absinthe, "~> 1.5.3"},
       {:absinthe_plug, "~> 1.5"},
