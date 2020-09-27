@@ -56,7 +56,8 @@ defmodule API.MixProject do
       {:ex_aws, git: "https://github.com/factsfinder/ex_aws.git", tag: "2.14", override: true},
       {:ex_aws_s3,
        git: "https://github.com/factsfinder/ex_aws_s3.git", tag: "2.0.3", override: true},
-      {:sweet_xml, "~> 0.6"}
+      {:sweet_xml, "~> 0.6"},
+      {:hackney, "~> 1.9"},
     ]
   end
 
