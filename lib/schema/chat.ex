@@ -12,7 +12,6 @@ defmodule API.Chat do
     field(:member_ids, {:array, :map}, virtual: true)
     timestamps()
 
-    belongs_to(:user, User, define_field: false)
     has_many(:chat_messages, ChatMessage)
     has_many(:chat_memberships, ChatMembership)
   end

@@ -6,9 +6,8 @@ defmodule API.ChatMembership do
 
   @timestamps_opts [type: :utc_datetime]
   schema "chat_memberships" do
-    field(:member_id, :id)
     timestamps()
-    belongs_to(:user, User, define_field: false)
+    belongs_to(:user, User, foreign_key: :member_id)
     belongs_to(:chat, Chat)
   end
 

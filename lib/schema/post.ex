@@ -8,14 +8,13 @@ defmodule API.Post do
   @timestamps_opts [type: :utc_datetime]
   schema "posts" do
     field(:content, :string)
-    field(:creator_id, :id)
     field(:likes_count, :integer, default: 0)
     field(:comments_count, :integer, default: 0)
     field(:creator, :map, virtual: true)
     field(:liked_by_me, :boolean, virtual: true)
     timestamps()
     field(:archived_at, :utc_datetime, default: nil)
-    belongs_to(:user, User, define_field: false)
+    belongs_to(:user, User, foreign_key: :creator_id)
     has_many(:post_likes, PostLike)
     has_many(:post_comments, PostComment)
   end

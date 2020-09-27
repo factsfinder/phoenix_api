@@ -7,11 +7,10 @@ defmodule API.PostComment do
   @timestamps_opts [type: :utc_datetime]
   schema "post_comments" do
     field(:content, :string)
-    field(:creator_id, :id)
     timestamps()
 
     belongs_to(:post, Post)
-    belongs_to(:user, User, define_field: false)
+    belongs_to(:user, User, foreign_key: :creator_id)
   end
 
   def changeset(comment, args) do

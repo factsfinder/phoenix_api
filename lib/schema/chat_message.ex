@@ -7,12 +7,11 @@ defmodule API.ChatMessage do
   @timestamps_opts [type: :utc_datetime]
 
   schema "chat_messages" do
-    field(:creator_id, :id)
     field(:content, :string)
     field(:chat_index, :string, virtual: true)
     timestamps()
     belongs_to(:chat, Chat)
-    belongs_to(:user, User, define_field: false)
+    belongs_to(:user, User, foreign_key: :creator_id)
   end
 
   def changeset(message, args) do

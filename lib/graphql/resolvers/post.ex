@@ -7,6 +7,7 @@ defmodule API.Graphql.Resolvers.Post do
 
   def createPost(_, args, %{context: %{current_user: current_user}}) do
     args_with_creator_id = Map.merge(args, %{creator_id: current_user.id})
+
     case Post.changeset(%Post{}, args_with_creator_id) |> Repo.insert() do
       {:ok, new_post} ->
         {:ok,
@@ -98,16 +99,15 @@ defmodule API.Graphql.Resolvers.Post do
         context: %{current_user: current_user}
       }) do
     query =
-      from(p in Post,
-        left_join: u in User,
-        on: p.creator_id == u.id,
-        left_join: ps in PostLike,
-        on: ps.post_id == p.id,
-        where: p.posted_to == ^type and is_nil(p.archived_at),
-        order_by: [desc: p.inserted_at],
+      from(post in Post,
+        join: post_creator in assoc(post, :user),
+        left_join: comments in assoc(post, :post_comments),
+        left_join: comment_creator in assoc(comments, :user),
+        preload: [user: post_creator, post_comments: {comments, user: comment_creator}],
+        where: post.posted_to == ^type and is_nil(post.archived_at),
+        order_by: [desc: post.inserted_at],
         offset: 10 * (^page - 1),
-        limit: 10,
-        select_merge: %{creator: u, liked_by_me: ps.creator_id == ^current_user.id}
+        limit: 10
       )
 
     posts =
@@ -116,10 +116,25 @@ defmodule API.Graphql.Resolvers.Post do
         post_creator =
           if post.creator_id == current_user.id,
             do: current_user,
-            else: User.map_user_avatar_url(post.creator)
+            else: User.map_user_avatar_url(post.user)
+
+        recent_comments =
+          post.post_comments
+          |> Enum.map(fn comment ->
+            comment_creator =
+              if comment.creator_id == current_user.id,
+                do: current_user,
+                else: User.map_user_avatar_url(comment.user)
+
+            Map.merge(comment, %{
+              creator: comment_creator
+            })
+          end)
 
         Map.merge(post, %{
+          liked_by_me: post.creator_id == current_user.id,
           creator: post_creator,
+          recent_comments: recent_comments,
           likes_count:
             Repo.one(from(s in PostLike, where: s.post_id == ^post.id, select: count(s.id))),
           comments_count:

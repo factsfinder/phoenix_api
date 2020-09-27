@@ -1,7 +1,6 @@
 defmodule API.Graphql.Resolvers.User do
   alias Argon2
   alias API.{Repo, User, Guardian}
-  import Ecto.Query
 
   def user(_, args, _) do
     user_by_id = Repo.get(User, args.id)
@@ -13,14 +12,9 @@ defmodule API.Graphql.Resolvers.User do
     end
   end
 
+  # Todo: paginate
   def users(_, _args, _) do
-    query =
-      from u in User,
-        join: p in assoc(u, :posts),
-        preload: [posts: p]
-
-    all_users = Repo.all(query)
-
+    all_users = Repo.all(User)
     {:ok, all_users}
   end
 
