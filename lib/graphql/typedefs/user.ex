@@ -10,7 +10,6 @@ defmodule API.Graphql.User do
     field(:password, :string)
     field(:name, non_null(:string))
     field(:avatar_url, :string)
-    field(:posts, list_of(:post))
     field(:updated_at, :datetime)
     field(:inserted_at, :datetime)
   end
