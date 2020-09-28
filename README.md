@@ -15,6 +15,7 @@
 ### To start your Phoenix server:
 
 - Install dependencies with `mix deps.get`.
+- Install ImageMagick on host os for image thumbnailing and conversion. 
 - Please check config/dev.exs to make sure the database config is correct.
 - Create and migrate your database with `mix ecto.setup`.
 - Source .env `source .env`.
