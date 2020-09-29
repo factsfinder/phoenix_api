@@ -1,0 +1,38 @@
+version: "3.6"
+services:
+  db:
+    environment:
+      PGDATA: /var/lib/postgresql/data/pgdata
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_USER: ${DB_USER}
+    image: "postgres:11-alpine"
+    restart: always
+    volumes:
+      - "pgdata:/var/lib/postgresql/data"
+  api:
+    build: .
+    depends_on:
+      - db
+    environment:
+      MIX_ENV: dev
+    env_file:
+      - .env
+    ports:
+      - '4000:4000'
+    volumes:
+      - .:/app
+  imgproxy:
+    image: darthsim/imgproxy:v2.14.1
+    restart: always
+    environment:
+      IMGPROXY_QUALITY: 90 # default is 80.
+      IMGPROXY_USE_S3: "true"
+      IMGPROXY_KEY: ${IMGPROXY_KEY}
+      IMGPROXY_SALT: ${IMGPROXY_SALT}
+      AWS_ACCESS_KEY_ID: ${BACKBLAZE_ACCESS_KEY}
+      AWS_SECRET_ACCESS_KEY: ${BACKBLAZE_SECRET_KEY}
+      AWS_REGION: us-west-002
+    ports:
+      - "8082:8080"
+volumes:
+  pgdata:
