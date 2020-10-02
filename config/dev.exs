@@ -2,11 +2,7 @@ use Mix.Config
 
 # Configure your database
 config :api, API.Repo,
-  username: "postgres",
-  password: "postgres",
-  database: "api_dev",
-  hostname: "localhost",
-  port: 5432,
+  url: System.get_env("DB_URL"),
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
 
